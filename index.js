@@ -26,9 +26,9 @@ app.get("/api/hello", function (req, res) {
 });
 
 //implementing the logic for the 1st project
-app.get('/api/:date?',(req,res)=>{
-  let dateString = req.params.date
-
+app.get("/api/:date?", (req, res) => {
+  let dateString = req.params.date;
+  let date;
 
   if (!dateString) {
     date = new Date();
@@ -39,14 +39,17 @@ app.get('/api/:date?',(req,res)=>{
       date = new Date(dateString);
     }
   }
-  if(date.toString() === 'Invalid Date')
-    return res.json({error : 'Invalid Date'})
+
+  if (date.toString() === "Invalid Date") {
+    return res.json({ error: "Invalid Date" });
+  }
 
   res.json({
-    unix : date.getTime(),
-    utc : date.toUTCString()
-  })
-})
+    unix: date.getTime(),
+    utc: date.toUTCString(),
+  });
+});
+
 
 
 
